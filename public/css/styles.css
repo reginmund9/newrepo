@@ -14,7 +14,7 @@ body {
   justify-content: center;
   text-align: center;
   margin: 30px auto;
-  border: #001eb3 solid 5px;
+  border: #00aae4 solid 5px;
   border-radius: 5px;
 }
 
@@ -46,7 +46,7 @@ footer {
 }
 
 nav {
-  background-color: #001eb3;
+  background-color: black;
   color: white;
   border-radius: 5px;
   margin: 0 25px;
@@ -85,10 +85,10 @@ h2 {
 
 .label button {
   font-family: var(--other-font);
-  color: white;
+  color: black;
   font-size: large;
   border-radius: 5px;
-  background-color: #001eb3;
+  background-color: #00aae4;
   padding: 10px;
   text-align: center;
   margin-top: 20px;
@@ -109,7 +109,7 @@ h2 {
 }
 .description {
   font-family: var(--other-font);
-  color: #001eb3;
+  color: #00aae4;
   font-weight: bolder;
   font-size: xx-large;
 }
