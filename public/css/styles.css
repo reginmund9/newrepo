@@ -5,8 +5,8 @@
   box-sizing: border-box;
 }
 :root {
-  --heading-font: "Nunito Sans", serif;
-  --other-font: "Montserrat", serif;
+  --heading-font: "Roboto", serif;
+  --other-font: "Arial", serif;
 }
 
 body {
@@ -160,11 +160,16 @@ h2 {
 
 .reviews {
   height: 100%;
+  margin-left: 200px;
+  text-align: left;
+  
 }
 
 .reviews ul li {
   font-family: var(--other-font);
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  
 }
 
 html {
@@ -192,10 +197,7 @@ html {
     padding: 0;
   }
 
-  #upgrade-reviews {
-    display: flex;
-    flex-direction: column-reverse;
-  }
+  
 
   .upgrade-img {
     width: 150px;
@@ -247,10 +249,23 @@ html {
     font-size: medium;
   }
 
+  #upgrade-reviews {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reviews {
+    order: 1; /* Change the order */
+  }
+
+  .upgrades {
+    order: 2; /* Change the order */
+  }
+
 
 }
 
-@media screen and (min-width: 501px) and (max-width: 768px){
+@media screen and (min-width: 501px) and (max-width: 760px){
   .label button {
     font-size: small;
     padding: 5px;
@@ -282,7 +297,11 @@ html {
     height: 50px;
   }
 
+  
+
+
   .upgrade-reviews h3 {
+
     font-size: 20px;
   }
 
