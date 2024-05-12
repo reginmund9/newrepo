@@ -19,4 +19,31 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
+invCont.buildByInventoryId = async function (req, res, next) {
+  const inv_id = req.params.inventoryId
+  const data = await invModel.getInventoryById(inv_id)
+  const grid = await utilities.buildInventoryGrid(data)
+  let nav = await utilities.getNav()
+  const className = data[0].classification_name
+  res.render("./inventory/detailsvehicle", {
+    title: className + " vehicles",
+    nav,
+    grid,
+  })
+}
+
+// task 3: INTENTIONAL ERROR
+invCont.buildErrorByInventoryId= async function (req, res, next) {
+  const inv_id = req.params.ErrorinventoryId
+  const data = await invModel.getInventoryByIdError(inv_id)
+  const grid = await utilities.buildInventoryGridError(data)
+  let nav = await utilities.getNav()
+  const className = data[0].classification_name
+  res.render("./inventory/detailserror", {
+    title: className + " vehicles",
+    nav,
+    grid,
+  })
+}
+
 module.exports = invCont
