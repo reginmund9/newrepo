@@ -1,0 +1,49 @@
+@media screen and (min-width: 600px) {
+  body {
+      background-image: url("/images/site/small_check.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  h1 {
+      font-size: 2em;
+  }
+  #wrapper {
+      border-style: solid;
+      border-color: lightseagreen;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 10px;
+  }
+  main {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 20px;
+  }
+  .vehicle {
+      display: flex;
+      flex-direction: row;
+  }
+  .vehicle > * {
+      flex: 1;
+  }
+  nav ul {
+      flex-direction: row;
+      justify-content: space-around;
+  }
+
+  /* Adjustments for the vehicle grid items */
+  main .vehicle > * {
+      padding: 0 10px;
+  }
+  main .vehicle img {
+      width: 100%;
+      height: auto;
+  }
+  main .vehicle .namePrice {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+  }
+}

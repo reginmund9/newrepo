@@ -61,78 +61,56 @@ Util.buildClassificationGrid = async function(data){
 
  
 /* **************************************
-* Build the classification view HTML
+* Build details of vehicules view HTML
 * ************************************ */
+
 Util.buildInventoryGrid = async function(data){
-  let grid
+  let grid = '';
+  
   if(data.length > 0){
-    grid = '<ul id="inv-detail">'
+    
+    
     data.forEach(vehicle => { 
-      grid += '<h2>' + vehicle.inv_year + vehicle.inv_make + vehicle.inv_model + '</h2>'
+      grid += '<li>';
+      grid += '<div class="vehicle">';
       
-      grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
-
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-
-      grid += '<span> Price: $' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
+      // Left side content
+      grid += '<div class="left-content">';
+      grid += '<h2>' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>';
+      grid += '<a href="../../inv/detail/'+ vehicle.inv_id + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model + 'details">';
+      grid += '<img src="' + vehicle.inv_thumbnail +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors" />';
+      grid += '</a>';
+      grid += '</div>'; // End of left-content
       
-    })
-    grid += '</ul>'
+      // Right side content
+      grid += '<div class="right-content">';
+      grid += '<div class="namePrice2">';
+      grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>';
+      grid += '<p>';
+      grid += '<strong> Price: $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</strong>';
+      grid += '</p>';
+      grid += '<p>';
+      grid += '<strong> Description: </strong>' + vehicle.inv_description + '</p>';
+      grid += '<p>';
+      grid += '<strong> Color: </strong>' + vehicle.inv_color + '</p>';
+      grid += '<p>';
+      grid += '<strong> Miles: </strong>' + vehicle.inv_miles + '</p>';
+      grid += '</div>'; // End of namePrice
+      grid += '</div>'; // End of right-content
+      
+      grid += '</div>'; // End of vehicle
+      grid += '</li>';
+    });
+    
+    
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
-  return grid
-}
+  
+  return grid;
+};
 
-// task 3: INTENTIONAL ERROR
-Util.buildInventoryGridError = async function(data){
-  let grid
-  if(data.length > 0){
-    grid = '<ul id="inv-detail">'
-    data.forEach(vehicle => { 
-      grid += '<h2>' + vehicle.inv_year + vehicle.inv_make + vehicle.inv_model + '</h2>'
-      
-      grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
 
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-
-      grid += '<span> Price: $' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
-      
-    })
-    grid += '</ul>'
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
-  }
-  return grid
-}
 
 /* ****************************************
  * Middleware For Handling Errors
