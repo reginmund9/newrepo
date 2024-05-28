@@ -7,6 +7,15 @@ const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/registration", utilities.handleErrors(accountController.buildRegistration));
+// Unit5 IND++++++++++++++++++++++++
+router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdate));
+
+/* ****************************************
+ * deliver account management view
+ * unit 5 jwt authorization activity
+ * ************************************ */
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
 // Process the registration data
 router.post(
     "/register",
@@ -20,17 +29,29 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  
+  accountController.accountLogin,
   utilities.handleErrors(accountController.accountLogin)
 )
 
-//router.post("/login", regValidate.loginRules(), regValidate.checkRegDataAccountManagement, utilities.handleErrors(accountController.accountLogin))
+// Unit5 IND++++++++++++++++++++++++++
+router.post(
+  "/updateUser",
+  regValidate.updateUserRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateUser)
+)
+router.post(
+  "/updatePassword",
+  regValidate.updatePasswordRules(),
+  regValidate.checkUpdatePasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+)
 
-/* ****************************************
- * deliver account management view
- * unit 5 jwt authorization activity
- * ************************************ */
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 
+
+router.get(
+  "/logout",
+  utilities.handleErrors(accountController.logout)
+)
 
 module.exports = router;

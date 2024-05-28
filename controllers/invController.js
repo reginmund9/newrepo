@@ -183,15 +183,17 @@ invCont.addVehicle = async function (req, res, next) {
 };
 
 invCont.buildByInventoryId501 = async function (req, res, next) {
-  next({ status: 501, message: "Sorry, no id was selected." });
-
-  let nav = await utilities.getNav();
-  res.render("errors/error", {
-    title: "501" || "Server Error",
-    message,
-    nav,
-    errors: null,
-  });
+  //   let nav = await utilities.getNav();
+  //   res.render("errors/error", {
+  //     title: "501" || "Server Error",
+  //     message,
+  //     nav,
+  //     errors: null,
+  //   }
+  // );
+    next({ status: 501, message: "Sorry, no id was selected." });
+  
+  
 };
 
 /* ***************************
@@ -318,7 +320,7 @@ invCont.deleteInventoryView = async function (req, res, next) {
   })
 }
 /* ***************************
- *  Update Inventory Data unit5 teamAct
+ *  Update Inventory Data unit5 teamAct+++++++++++
  * ************************** */
 invCont.deleteInventory = async function (req, res, next) {
   let nav = await utilities.getNav()

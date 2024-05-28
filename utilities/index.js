@@ -131,6 +131,7 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 /* ****************************************
 * Middleware to check token validity
@@ -169,11 +170,19 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
+Util.checkIfClient = (req, res, next) => {
+  if (res.locals.accountData.account_type == 'Employee' || res.locals.accountData.account_type == 'Admin') {
+    next()
+  } else {
+    req.flash("notice", "Page is Only Accessible to Employees.")
+    return res.redirect("/account/login")
+  }
+}
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+//Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util
