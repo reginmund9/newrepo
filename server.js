@@ -5,6 +5,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser = require("cookie-parser")
+
 const session = require("express-session")
 const pool = require('./database/')
 
@@ -43,6 +45,10 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+// unit 5, login activity
+app.use(cookieParser())
+//unit 5 login process activity
+app.use(utilities.checkJWTToken) 
 
 /* ***********************
  * View Engine and Templates"

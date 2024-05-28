@@ -18,12 +18,19 @@ router.post(
 
 router.post(
   "/login",
-  //regValidate.loginRules(),
-  //regValidate.checkLoginData,
-  (req, res) => {
-    res.status(200).send('login process')
-  }
-  //utilities.handleErrors(accountController.loginAccount)
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  
+  utilities.handleErrors(accountController.accountLogin)
 )
+
+//router.post("/login", regValidate.loginRules(), regValidate.checkRegDataAccountManagement, utilities.handleErrors(accountController.accountLogin))
+
+/* ****************************************
+ * deliver account management view
+ * unit 5 jwt authorization activity
+ * ************************************ */
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
 
 module.exports = router;

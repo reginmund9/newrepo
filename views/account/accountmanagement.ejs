@@ -1,0 +1,9 @@
+<% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+  
+      <%- messages() %>
+      <h4>You are login</h4>
+      <a href="#" > Edit account information</a>
