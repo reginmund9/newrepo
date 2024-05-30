@@ -7,6 +7,9 @@
   h1 {
       font-size: 2em;
   }
+  .account-management-view h2 {
+    margin: 30px;
+  }
   #wrapper {
       border-style: solid;
       border-color: lightseagreen;
