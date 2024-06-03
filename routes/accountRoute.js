@@ -14,7 +14,10 @@ router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(a
  * deliver account management view
  * unit 5 jwt authorization activity
  * ************************************ */
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement)) ///erger
+
+
+router.get("/all", utilities.checkLogin, utilities.handleErrors(accountController.viewAllAccounts));
 
 // Process the registration data
 router.post(

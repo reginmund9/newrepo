@@ -284,6 +284,45 @@ async function logout (req, res){
 
 }*/
 
+/*async function viewAllAccounts(req, res) {
+  let nav = await utilities.getNav();
+  const loggedInUser = req.user; // Assuming you have the user object available in the request
+  const allAccounts = await accountModel.getAllAccounts(5);
+
+  if (loggedInUser && allAccounts.account_type === 'Admin') {
+    try {
+      const allAccounts = await accountModel.getAllAccounts();
+      res.render("account/allaccounts", {
+        title: "All Accounts",
+        nav,
+        errors: null,
+        allAccounts,
+      });
+    } catch (error) {
+      req.flash("notice", "Error fetching all accounts");
+      res.status(500).redirect("/account/");
+    }
+  } else {
+    req.flash("notice", "Only admin can view all accounts.");
+    res.status(403).redirect("/account/");
+  }
+}*/
+async function viewAllAccounts(req, res) {
+  let nav = await utilities.getNav();
+  try {
+    const allAccounts = await accountModel.getAllAccounts();
+    res.render("account/allaccounts", {
+      title: "All Accounts",
+      nav,
+      allAccounts,
+    });
+  } catch (error) {
+    req.flash("notice", "Failed to fetch all accounts");
+    res.status(500).redirect("/account/");
+  }
+}
+
 
 //buildLogin buildRegister accountLogin registerAccount         // buildManagement buildRegistration 
-module.exports = { logout, updatePassword, updateUser, buildLogin, buildRegistration, buildUpdate, registerAccount, buildRegister, accountLogin, buildManagement }
+module.exports = { logout, updatePassword, updateUser, buildLogin, buildRegistration, 
+  buildUpdate, registerAccount, buildRegister, accountLogin, buildManagement, viewAllAccounts }

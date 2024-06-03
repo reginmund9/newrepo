@@ -1,0 +1,12 @@
+<!-- allAccounts.ejs -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<div id="all-accounts-view">
+  <% allAccounts.forEach(account => { %>
+    <% if (account !== null) { %>
+      <p>Account ID: <%= account.account_id %>, Name: <%= account.account_firstname %> <%= account.account_lastname %></p>
+    <% } %>
+  <% }) %>
+</div>

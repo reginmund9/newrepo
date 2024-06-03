@@ -70,6 +70,33 @@ async function getAccountById (account_id) {
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, updateUser, updatePassword, getAccountById};
+
+/*async function getAllAccounts() {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type FROM account'
+      [account_id]);
+    return result.rows[0]
+  } catch (error) {
+    throw new Error("Error fetching all accounts");
+  }
+}*/
+
+
+async function getAllAccounts() {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname FROM account WHERE account_id > 1'
+    );
+    return result.rows;
+  } catch (error) {
+    throw new Error("Failed to fetch all accounts");
+  }
+}
+
+
+
+module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, 
+  updateUser, updatePassword, getAccountById, getAllAccounts};
 
 
