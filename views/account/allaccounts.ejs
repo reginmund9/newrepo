@@ -4,9 +4,22 @@
 <% } %>
 
 <div id="all-accounts-view">
-  <% allAccounts.forEach(account => { %>
-    <% if (account !== null) { %>
-      <p>Account ID: <%= account.account_id %>, Name: <%= account.account_firstname %> <%= account.account_lastname %></p>
-    <% } %>
-  <% }) %>
+  <table>
+    <thead>
+      <tr>
+        <th>Account ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% allAccounts.forEach(account => { %>
+        <% if (account !== null) { %>
+          <tr>
+            <td><%= account.account_id %></td>
+            <td><%= account.account_firstname %> <%= account.account_lastname %></td>
+          </tr>
+        <% } %>
+      <% }) %>
+    </tbody>
+  </table>
 </div>
